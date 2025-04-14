@@ -14,9 +14,9 @@ interface StoreCard {
 
 export default function MediaCard(props: StoreCard) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 280 }}>
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 150 }}
         image= {props.imageUrl}
         title={props.title}
       />

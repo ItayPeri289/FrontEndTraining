@@ -11,9 +11,11 @@ function App() {
     <div>
     <MenuBar/>
     <br/>
-    <div className='tabs'>
+    <div className='items'>
     {Array.from({length: productsArray.length}).map((_, index) => (
+      <div className ='item'>
       <MediaCard imageUrl={productsArray[index].image} description={productsArray[index].description} title={productsArray[index].name}/>
+      </div>
     ))}
     </div>
   </div>
