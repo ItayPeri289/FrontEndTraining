@@ -21,10 +21,9 @@ export default function MenuBar() {
           >
             <ShoppingCartBadge itemsAmount={2} />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+          <Typography variant="h6" align='right' component="div" sx={{ flexGrow: 1 }}>
+            :סכום כולל
           </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>

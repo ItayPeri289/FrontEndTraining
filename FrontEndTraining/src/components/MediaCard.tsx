@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import AlertDialog from './AlertDialog';
 
 interface StoreCard {
   imageUrl: string;
@@ -14,7 +15,7 @@ interface StoreCard {
 
 export default function MediaCard(props: StoreCard) {
   return (
-    <Card sx={{ width: 280 }}>
+    <Card sx={{ width: 300 }}>
       <CardMedia
         sx={{ height: 150 }}
         image= {props.imageUrl}
@@ -29,8 +30,8 @@ export default function MediaCard(props: StoreCard) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <AlertDialog imageUrl={props.imageUrl} title= {props.title} description={props.description}/>
+        <Button size="small">הוסף לעגלה</Button>
       </CardActions>
     </Card>
   );
