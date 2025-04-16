@@ -31,7 +31,8 @@ export default function MediaCard(props: StoreCard) {
           {props.price}₪
         </Typography>
       </CardContent>
-      <CardActions>
+      <br/>
+      <CardActions sx= {{display: 'flex', justifyContent: 'space-between'}}>
       <AlertDialog imageUrl={props.imageUrl} title= {props.title} description={props.description} price ={props.price}/>
         <Button variant="contained"><ShoppingCartIcon/>הוסף לעגלה</Button>
       </CardActions>

@@ -55,11 +55,9 @@ export default function AlertDialog(props: StoreCard) {
         image= {props.imageUrl}
         title={props.title}
       />
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
+        <DialogActions sx= {{display: 'flex', justifyContent: 'left'}}>
+          <Button onClick={handleClose}>סגור</Button>
+          <Button onClick={handleClose} autoFocus> הוסף לעגלה</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
