@@ -6,11 +6,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CardMedia from '@mui/material/CardMedia';
+import InfoIcon from '@mui/icons-material/Info';
 
 interface StoreCard {
     imageUrl: string;
     title: string;
     description: string
+    price: number;
   }
 
 export default function AlertDialog(props: StoreCard) {
@@ -26,7 +28,8 @@ export default function AlertDialog(props: StoreCard) {
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button color='secondary' variant="contained" onClick={handleClickOpen}>
+        <InfoIcon/>
         פרטים
       </Button>
       <Dialog
@@ -34,20 +37,24 @@ export default function AlertDialog(props: StoreCard) {
         onClose={handleClose}
         aria-labelledby= {props.title}
         aria-describedby= {props.description}
+        sx= {{textAlign: 'right'}}
       >
-        <DialogTitle id={props.title}>
+        <DialogTitle id='title'>
           {props.title}
         </DialogTitle>
+        <DialogContent>
+          <DialogContentText id='description'>
+          {props.description}
+          </DialogContentText>
+          <DialogContentText id='price'>
+          מחיר: {props.price}₪
+          </DialogContentText>
+        </DialogContent>
         <CardMedia
-        sx={{ height: 150 }}
+        sx={{height: '15rem', width: '22rem' }}
         image= {props.imageUrl}
         title={props.title}
       />
-        <DialogContent>
-          <DialogContentText id={props.description}>
-          {props.description}
-          </DialogContentText>
-        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
