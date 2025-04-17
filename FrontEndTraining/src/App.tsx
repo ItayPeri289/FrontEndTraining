@@ -5,13 +5,13 @@ import MediaCard from './components/MediaCard'
 import './App.css';
 import productsArray from './data/Products.json';
 import MenuBar from './components/MenuBar';
-import NavigationBar from './components/NavigationBar';
+import Tabs from './components/Tabs';
 
 function App() {
   return  (
     <div>
       <MenuBar/>
-    <div><NavigationBar/></div>
+    <div><Tabs/></div>
     <div className='items'>
     {Array.from({length: productsArray.length}).map((_, index) => (
       <MediaCard imageUrl={productsArray[index].image} description={productsArray[index].description} title={productsArray[index].name} price={productsArray[index].price}/>
