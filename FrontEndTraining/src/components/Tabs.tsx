@@ -4,35 +4,31 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; 
 import HomeIcon from '@mui/icons-material/Home';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import AllCards from './AllCards.tsx';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+export default function LabTabs() {
+  const [value, setValue] = React.useState('1');
 
-export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
   return (
     <Box>
+      <TabContext value={value}>
       <Box dir = "rtl" >
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab icon={<ShoppingCartIcon/>} {...a11yProps(0)} />
-          <Tab icon={<HomeIcon/>} {...a11yProps(1)} />
-        </Tabs>
+      <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab label= {<ShoppingCartIcon/>} value="1" />
+            <Tab label={ <HomeIcon/>} value="2" />
+          </TabList>
       </Box>
+      <TabPanel value="1">Item One</TabPanel>
+        <TabPanel value="2"><AllCards/></TabPanel>
+        </TabContext>
       <br/>
     </Box>
   );
