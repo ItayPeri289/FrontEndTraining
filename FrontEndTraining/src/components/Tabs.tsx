@@ -8,6 +8,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import AllCards from './AllCards.tsx';
+import ItemsList from './ItemsList.tsx';
 
 
 export default function LabTabs() {
@@ -22,12 +23,12 @@ export default function LabTabs() {
       <TabContext value={value}>
       <Box dir = "rtl" >
       <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label= {<ShoppingCartIcon/>} value="1" />
-            <Tab label={ <HomeIcon/>} value="2" />
+            <Tab label= {<HomeIcon/>} value="1" />
+            <Tab label={ <ShoppingCartIcon/>} value="2" />
           </TabList>
       </Box>
-      <TabPanel value="1">Item One</TabPanel>
-        <TabPanel value="2"><AllCards/></TabPanel>
+      <TabPanel value="1"><AllCards/></TabPanel>
+        <TabPanel value="2"><ItemsList/></TabPanel>
         </TabContext>
       <br/>
     </Box>
