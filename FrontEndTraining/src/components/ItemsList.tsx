@@ -33,15 +33,8 @@ export default function InteractiveList() {
   const [secondary, setSecondary] = React.useState(false);
 
   return (
-    <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
-      <FormGroup row>
-      </FormGroup>
-        <Grid
-          size={{
-            xs: 12,
-            md: 6,
-          }}
-        >
+    <Box>
+        <Grid size={{ xs: 6, md: 8 }}>
             <List dense={dense}>
               {generate(
                 <ListItem
