@@ -6,8 +6,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartBadge from './ShoppingCartBadge';
+import useCartStore from '../store/cartStore';
+
 
 export default function MenuBar() {
+  const cartCount = useCartStore((state) => state.cartCount);
+  const balance = useCartStore((state) => state.balance);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -19,10 +23,10 @@ export default function MenuBar() {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <ShoppingCartBadge itemsAmount={2} />
+            <ShoppingCartBadge itemsAmount={cartCount} />
           </IconButton>
           <Typography variant="h6" align='right' component="div" sx={{ flexGrow: 1 }}>
-            :סכום כולל
+          {balance}₪    :סכום כולל
           </Typography>
         </Toolbar>
       </AppBar>
