@@ -17,7 +17,7 @@ interface StoreCard {
 }
 
 export default function MediaCard(props: StoreCard) {
-  const addToCart = useCartStore((state) => state.addToCart);
+  const addToCounter = useCartStore((state) => state.addToCounter);
   return (
     <Card sx={{ width: '18rem', height: '19rem'}}>
       <CardMedia
@@ -36,7 +36,7 @@ export default function MediaCard(props: StoreCard) {
       <br/>
       <CardActions sx= {{display: 'flex', justifyContent: 'space-between'}}>
       <AlertDialog imageUrl={props.imageUrl} title= {props.title} description={props.description} price ={props.price}/>
-        <Button variant="contained" onClick={addToCart}><ShoppingCartIcon/>הוסף לעגלה</Button>
+        <Button variant="contained" onClick={addToCounter}><ShoppingCartIcon/>הוסף לעגלה</Button>
       </CardActions>
     </Card>
   );
