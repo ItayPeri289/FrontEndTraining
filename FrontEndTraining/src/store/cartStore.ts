@@ -3,13 +3,13 @@ import { create } from "zustand";
 interface CartStore {
   cartCount: number;
   balance: number;
-  itemsList: StoreCard[];
-  addToCounter: () => void;
-  removeFromCounter: () => void;
+  itemsArray: cartItem[];
   updateBalance: (price: number) => void;
+  addItem: (cartItem: cartItem) => void;
+  //removeItem: (cartItem: cartItem) => void;
 }
 
-interface StoreCard {
+interface cartItem {
   imageUrl: string;
   title: string;
   description: string;
@@ -19,19 +19,21 @@ interface StoreCard {
 const useCartStore = create<CartStore>((set) => ({
   cartCount: 0,
   balance: 1000.0,
-  itemsList: [],
-  addToCounter: () =>
-    set((state) => ({
-      cartCount: state.cartCount + 1,
-    })),
-  removeFromCounter: () =>
-    set((state) => ({
-      cartCount: state.cartCount - 1,
-    })),
+  itemsArray: [],
   updateBalance: (price: number) =>
     set((state) => ({
       balance: state.balance - price,
     })),
+  addItem: (cartItem: cartItem) =>
+    set((state) => ({
+      cartCount: state.cartCount + 1,
+      itemsArray: [...state.itemsArray, cartItem],
+    })),
+  //   removeItem: (cartItem: cartItem) =>
+  //     set((state) => ({
+  //       cartCount: state.cartCount - 1,
+  //       itemsArray: state.itemsArray.slice(0, -1),
+  //     })),
 }));
 
 export default useCartStore;

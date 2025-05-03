@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CardMedia from '@mui/material/CardMedia';
 import InfoIcon from '@mui/icons-material/Info';
+import useCartStore from '../store/cartStore';
 
 interface StoreCard {
     imageUrl: string;
@@ -16,6 +17,9 @@ interface StoreCard {
   }
 
 export default function AlertDialog(props: StoreCard) {
+
+  const addItem = useCartStore((state) => state.addItem);
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -57,7 +61,7 @@ export default function AlertDialog(props: StoreCard) {
       />
         <DialogActions sx= {{display: 'flex', justifyContent: 'left'}}>
           <Button onClick={handleClose}>סגור</Button>
-          <Button onClick={handleClose} autoFocus> הוסף לעגלה</Button>
+          <Button onClick={() => {handleClose(); addItem(props);}} autoFocus> הוסף לעגלה</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

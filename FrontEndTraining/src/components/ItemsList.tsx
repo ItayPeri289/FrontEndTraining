@@ -15,28 +15,14 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-function generate(element: React.ReactElement<unknown>) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
-
-const Demo = styled('div')(({ theme }) => ({
-
-}));
+import useCartStore from '../store/cartStore';
 
 export default function InteractiveList() {
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
-
-  return (
+  const itemsArray = useCartStore((state) => state.itemsArray);
+  return itemsArray.map((item) =>
     <Box>
         <Grid size={{ xs: 6, md: 8 }}>
-            <List dense={dense}>
-              {generate(
+            <List>
                 <ListItem
                   secondaryAction={
                     <IconButton edge="end" aria-label="delete">
@@ -46,15 +32,14 @@ export default function InteractiveList() {
                 >
                   <ListItemAvatar>
                     <Avatar>
-                      <FolderIcon />
+                      <img src ={item.imageUrl} width={'45rem'}/>
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
+                    primary={item.title}
+                    secondary={item.price}
                   />
-                </ListItem>,
-              )}
+                </ListItem>
             </List>
         </Grid>
     </Box>
