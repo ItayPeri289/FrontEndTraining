@@ -24,6 +24,7 @@ const itemsArray = useCartStore((state) => state.itemsArray);
 const removeItemByIndex = useCartStore((state) => state.removeItem);
 const cartItemsPrice = useCartStore((state) => state.cartItemsPrice);
 const balance = useCartStore((state) => state.balance);
+const reduceBalance = useCartStore((state)=> state.reduceBalance);
 
 const canPurchase = () => {
   if (balance >= cartItemsPrice)
@@ -31,12 +32,12 @@ const canPurchase = () => {
   
 }
 
-const removeAllItemsFromCart = async () => {
-  const removeArray = itemsArray;
-  removeArray.map((_, index) => {
-   removeItemByIndex(index);
-  });
-}
+const removeAllItemsFromCart = () => {
+  while(itemsArray.length > 0)
+    removeItemByIndex(0);
+    reduceBalance(itemsArray[0].price);
+  };
+
 
   if(itemsArray.length == 0)
     return <div style ={{display: 'flex', justifyContent: 'center'}}>העגלה ריקה</div>;
