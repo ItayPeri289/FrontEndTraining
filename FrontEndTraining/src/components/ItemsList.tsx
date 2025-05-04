@@ -16,11 +16,35 @@ import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useCartStore from '../store/cartStore';
+import Button from '@mui/material/Button';
 
 export default function InteractiveList() {
-  const itemsArray = useCartStore((state) => state.itemsArray);
-  const removeItem = useCartStore((state) => state.removeItem);
-  return itemsArray.map((item, index) =>
+
+const itemsArray = useCartStore((state) => state.itemsArray);
+const removeItemByIndex = useCartStore((state) => state.removeItem);
+const cartItemsPrice = useCartStore((state) => state.cartItemsPrice);
+const balance = useCartStore((state) => state.balance);
+
+const canPurchase = () => {
+  if (balance >= cartItemsPrice)
+    removeAllItemsFromCart();
+  
+}
+
+const removeAllItemsFromCart = async () => {
+  const removeArray = itemsArray;
+  removeArray.map((_, index) => {
+   removeItemByIndex(index);
+  });
+}
+
+  if(itemsArray.length == 0)
+    return <div style ={{display: 'flex', justifyContent: 'center'}}>העגלה ריקה</div>;
+  
+  return( 
+  <Box>
+  <div style ={{display: 'flex', justifyContent: 'center'}}><Button variant="contained" onClick={canPurchase}>הזמן {cartItemsPrice}₪</Button></div>
+    {itemsArray.map((item, index) =>
     <Box>
         <Grid size={{ xs: 6, md: 8 }} >
             <List>
@@ -39,12 +63,14 @@ export default function InteractiveList() {
                   </Box>
                   }
                 >
-                    <IconButton onClick={() => removeItem(index)}edge="end" aria-label="delete">
+                    <IconButton onClick={() => removeItemByIndex(index)}edge="end" aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                 </ListItem>
             </List>
         </Grid>
     </Box>
-  );
+  )}
+  </Box>
+);
 }

@@ -9,7 +9,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import AllCards from './AllCards.tsx';
 import ItemsList from './ItemsList.tsx';
-
+import Button from '@mui/material/Button';
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
@@ -28,7 +28,9 @@ export default function LabTabs() {
           </TabList>
       </Box>
       <TabPanel value="1"><AllCards/></TabPanel>
-        <TabPanel value="2"><ItemsList/></TabPanel>
+        <TabPanel value="2">
+          <ItemsList/>
+        </TabPanel>
         </TabContext>
       <br/>
     </Box>
