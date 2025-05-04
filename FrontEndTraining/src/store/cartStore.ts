@@ -6,7 +6,7 @@ interface CartStore {
   itemsArray: cartItem[];
   updateBalance: (price: number) => void;
   addItem: (cartItem: cartItem) => void;
-  //removeItem: (cartItem: cartItem) => void;
+  removeItem: (index: number) => void;
 }
 
 interface cartItem {
@@ -29,11 +29,11 @@ const useCartStore = create<CartStore>((set) => ({
       cartCount: state.cartCount + 1,
       itemsArray: [...state.itemsArray, cartItem],
     })),
-  //   removeItem: (cartItem: cartItem) =>
-  //     set((state) => ({
-  //       cartCount: state.cartCount - 1,
-  //       itemsArray: state.itemsArray.slice(0, -1),
-  //     })),
+  removeItem: (index: number) =>
+    set((state) => ({
+      cartCount: state.cartCount - 1,
+      itemsArray: state.itemsArray.filter((_, i) => i !== index),
+    })),
 }));
 
 export default useCartStore;

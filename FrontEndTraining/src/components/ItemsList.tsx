@@ -19,26 +19,29 @@ import useCartStore from '../store/cartStore';
 
 export default function InteractiveList() {
   const itemsArray = useCartStore((state) => state.itemsArray);
-  return itemsArray.map((item) =>
+  const removeItem = useCartStore((state) => state.removeItem);
+  return itemsArray.map((item, index) =>
     <Box>
-        <Grid size={{ xs: 6, md: 8 }}>
+        <Grid size={{ xs: 6, md: 8 }} >
             <List>
                 <ListItem
                   secondaryAction={
-                    <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon />
-                    </IconButton>
-                  }
-                >
-                  <ListItemAvatar>
+                    <Box sx={{display: 'flex', gap: '1rem', alignItems: 'center'}}>
+                    <ListItemText sx={{textAlign: 'right'}}
+                    primary={item.title}
+                    secondary={`${item.price}₪`}
+                  />
+                    <ListItemAvatar>
                     <Avatar>
                       <img src ={item.imageUrl} width={'45rem'}/>
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText
-                    primary={item.title}
-                    secondary={item.price}
-                  />
+                  </Box>
+                  }
+                >
+                    <IconButton onClick={() => removeItem(index)}edge="end" aria-label="delete">
+                      <DeleteIcon />
+                    </IconButton>
                 </ListItem>
             </List>
         </Grid>
