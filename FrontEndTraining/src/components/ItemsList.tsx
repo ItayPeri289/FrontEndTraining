@@ -17,10 +17,21 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useCartStore from '../store/cartStore';
 import Button from '@mui/material/Button';
-import { Snackbar } from '@mui/material';
 import { useState } from 'react';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import LinearDeterminate from './ProgressBars/LinearDeterminate';
+import SnackbarContent from '@mui/material/SnackbarContent';
+
+interface State extends SnackbarOrigin {
+  open: boolean;
+}
+
+
 
 export default function InteractiveList() {
+
+  
+
 
 const itemsArray = useCartStore((state) => state.itemsArray); // all in the same
 const removeItemByIndex = useCartStore((state) => state.removeItem);
@@ -29,9 +40,23 @@ const balance = useCartStore((state) => state.balance);
 const reduceBalance = useCartStore((state)=> state.reduceBalance);
 const sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay))
 
-const handleClick = () => {
+const [state, setState] = React.useState<State>({
+  open: false,
+  vertical: 'top',
+  horizontal: 'center',
+});
+const { vertical, horizontal, open } = state;
+
+
+const handleClose = () => {
+  setState({ ...state, open: false });
+};
+
+
+const handleClick = (newState: SnackbarOrigin) => {
   if (balance >= cartItemsPrice)
   {
+    setState({ ...newState, open: true });
     canPurchase();
     
   }
@@ -56,9 +81,11 @@ const removeAllItemsFromCart = async () => {
   if(itemsArray.length == 0)
     return <div style ={{display: 'flex', justifyContent: 'center'}}>העגלה ריקה</div>;
   
+  const itemsNumber = itemsArray.length;
+
   return( 
   <Box>
-  <div style ={{display: 'flex', justifyContent: 'center'}}><Button variant="contained" onClick={canPurchase}>הזמן {cartItemsPrice}₪</Button></div>
+  <div style ={{display: 'flex', justifyContent: 'center'}}><Button variant="contained" onClick={() => handleClick({ vertical: 'top', horizontal: 'center' })}>הזמן {cartItemsPrice}₪</Button></div>
     {itemsArray.map((item, index) =>
     <Box>
         <Grid size={{ xs: 6, md: 8 }} >
@@ -86,6 +113,25 @@ const removeAllItemsFromCart = async () => {
         </Grid>
     </Box>
   )}
+
+<Snackbar
+  anchorOrigin={{ vertical, horizontal }}
+  open={open}
+  onClose={handleClose}
+  key={vertical + horizontal}
+>
+  <Box
+    sx={{
+      backgroundColor: 'white',
+      padding: 2,
+      width: '20rem',
+    }}
+  >
+    <LinearDeterminate itemsAmount={2} />
+  </Box>
+</Snackbar>
+
+
   </Box>
 );
 }

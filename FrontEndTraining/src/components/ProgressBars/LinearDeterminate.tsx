@@ -23,7 +23,7 @@ export default function LinearDeterminate({itemsAmount}: {itemsAmount: number}) 
 
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgress variant="determinate" value={progress} />
+<LinearProgress variant="determinate" value={progress} sx={{ height: 10 }} />
     </Box>
   );
 }
