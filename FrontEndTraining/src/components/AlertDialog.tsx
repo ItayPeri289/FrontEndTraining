@@ -41,7 +41,7 @@ export default function AlertDialog(props: StoreCard) {
         onClose={handleClose}
         aria-labelledby= {props.title}
         aria-describedby= {props.description}
-        sx= {{textAlign: 'right'}}
+        sx= {{textAlign: 'right', width: '25rem', margin:'auto'}}
       >
         <DialogTitle id='title'>
           {props.title}
@@ -55,7 +55,7 @@ export default function AlertDialog(props: StoreCard) {
           </DialogContentText>
         </DialogContent>
         <CardMedia
-        sx={{height: '15rem', width: '22rem' }}
+        sx={{height: '15rem', width: '16rem', backgroundSize: 'contain', backgroundPosition: 'right', margin: '1rem'}}
         image= {props.imageUrl}
         title={props.title}
       />

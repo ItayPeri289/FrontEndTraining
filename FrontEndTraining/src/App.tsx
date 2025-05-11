@@ -6,7 +6,7 @@ import Tabs from './components/Tabs';
 
 function App() {
   return  (
-    <div>
+    <div style={{margin: '-0.5rem'}}>
       <MenuBar/>
     <div><Tabs/></div>
   </div>

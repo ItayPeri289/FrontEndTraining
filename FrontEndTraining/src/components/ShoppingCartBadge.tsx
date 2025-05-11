@@ -2,7 +2,7 @@ import * as React from 'react';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-export default function ShoppingCartBadge({itemsAmount}: {itemsAmount: number}) {
+export default function ShoppingCartBadge({itemsAmount}: {itemsAmount: number}) { // get from store instead 
   return (
     <Badge badgeContent={itemsAmount} color='warning'>
       <ShoppingCartIcon color="action" />

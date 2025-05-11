@@ -10,11 +10,10 @@ import useCartStore from '../store/cartStore';
 
 
 export default function MenuBar() {
-  const cartCount = useCartStore((state) => state.cartCount);
+  const cartCount = useCartStore((state) => state.cartCount); // put then together with {}
   const balance = useCartStore((state) => state.balance);
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <IconButton
             size="large"
@@ -30,6 +29,5 @@ export default function MenuBar() {
           </Typography>
         </Toolbar>
       </AppBar>
-    </Box>
   );
 }
