@@ -17,27 +17,41 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useCartStore from '../store/cartStore';
 import Button from '@mui/material/Button';
+import { Snackbar } from '@mui/material';
+import { useState } from 'react';
 
 export default function InteractiveList() {
 
-const itemsArray = useCartStore((state) => state.itemsArray);
+const itemsArray = useCartStore((state) => state.itemsArray); // all in the same
 const removeItemByIndex = useCartStore((state) => state.removeItem);
 const cartItemsPrice = useCartStore((state) => state.cartItemsPrice);
 const balance = useCartStore((state) => state.balance);
 const reduceBalance = useCartStore((state)=> state.reduceBalance);
+const sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay))
+
+const handleClick = () => {
+  if (balance >= cartItemsPrice)
+  {
+    canPurchase();
+    
+  }
+}
 
 const canPurchase = () => {
-  if (balance >= cartItemsPrice)
     removeAllItemsFromCart();
   
 }
 
-const removeAllItemsFromCart = () => {
+const removeAllItemsFromCart = async () => {
+  await sleep(1000);
+  reduceBalance(itemsArray[0].price);
   while(itemsArray.length > 0)
+  {
     removeItemByIndex(0);
     reduceBalance(itemsArray[0].price);
+    await sleep(1000);
+  }
   };
-
 
   if(itemsArray.length == 0)
     return <div style ={{display: 'flex', justifyContent: 'center'}}>העגלה ריקה</div>;
@@ -64,7 +78,7 @@ const removeAllItemsFromCart = () => {
                   </Box>
                   }
                 >
-                    <IconButton onClick={() => removeItemByIndex(index)}edge="end" aria-label="delete">
+                    <IconButton edge="end" aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                 </ListItem>
