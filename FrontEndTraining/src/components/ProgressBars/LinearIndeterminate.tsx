@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useState } from 'react';
 import AllCards from '../AllCards';
+import { Margin } from '@mui/icons-material';
 
 export default function LinearIndeterminate() {
     const [loading, setLoading] = useState(false);
@@ -18,10 +19,11 @@ export default function LinearIndeterminate() {
       }, []);
 
   return (
-    <Box sx={{ width: '100%' }}>
-        {loading && <LinearProgress/>}
+    <Box sx={{ width: '100%'}}>
+        {loading && 
+        <LinearProgress sx={{marginTop:'12em', marginRight: '3rem', marginLeft: '5rem'}}/>    
+        }
         {!loading && <AllCards/>}
-      {<LinearProgress />}
     </Box>
   );
 }
