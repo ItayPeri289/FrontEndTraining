@@ -10,6 +10,8 @@ import TabPanel from '@mui/lab/TabPanel';
 import AllCards from './AllCards.tsx';
 import ItemsList from './ItemsList.tsx';
 import Button from '@mui/material/Button';
+import { useEffect } from 'react';
+import LinearIndeterminate from './ProgressBars/LinearIndeterminate.tsx';
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
@@ -27,7 +29,9 @@ export default function LabTabs() {
             <Tab label={ <ShoppingCartIcon/>} value="2" />
           </TabList>
       </Box>
-      <TabPanel value="1"><AllCards/></TabPanel>
+      <TabPanel value="1">
+        <LinearIndeterminate/>
+        </TabPanel>
         <TabPanel value="2">
           <ItemsList/>
         </TabPanel>

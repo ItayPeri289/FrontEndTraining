@@ -14,7 +14,7 @@ export default function LinearDeterminate({itemsAmount}: {itemsAmount: number}) 
         const diff = 100 / itemsAmount;
         return Math.min(oldProgress + diff, 100);
       });
-    }, 500);
+    }, 1000);
 
     return () => {
       clearInterval(timer);

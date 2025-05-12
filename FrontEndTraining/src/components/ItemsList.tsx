@@ -26,12 +26,7 @@ interface State extends SnackbarOrigin {
   open: boolean;
 }
 
-
-
 export default function InteractiveList() {
-
-  
-
 
 const itemsArray = useCartStore((state) => state.itemsArray); // all in the same
 const removeItemByIndex = useCartStore((state) => state.removeItem);
@@ -48,23 +43,12 @@ const [state, setState] = React.useState<State>({
 const { vertical, horizontal, open } = state;
 
 
-const handleClose = () => {
-  setState({ ...state, open: false });
-};
-
-
 const handleClick = (newState: SnackbarOrigin) => {
   if (balance >= cartItemsPrice)
   {
     setState({ ...newState, open: true });
-    canPurchase();
-    
-  }
-}
-
-const canPurchase = () => {
     removeAllItemsFromCart();
-  
+  }
 }
 
 const removeAllItemsFromCart = async () => {
@@ -117,7 +101,6 @@ const removeAllItemsFromCart = async () => {
 <Snackbar
   anchorOrigin={{ vertical, horizontal }}
   open={open}
-  onClose={handleClose}
   key={vertical + horizontal}
 >
   <Box
@@ -127,7 +110,7 @@ const removeAllItemsFromCart = async () => {
       width: '20rem',
     }}
   >
-    <LinearDeterminate itemsAmount={2} />
+    <LinearDeterminate itemsAmount={itemsNumber} />
   </Box>
 </Snackbar>
 
