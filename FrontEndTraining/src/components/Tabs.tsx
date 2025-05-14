@@ -8,7 +8,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import AllCards from './AllCards.tsx';
-import ItemsList from './ItemsList.tsx';
+import ItemsList from './ItemsListPage/ItemsListPage.tsx';
 import Button from '@mui/material/Button';
 import { useEffect } from 'react';
 import LinearIndeterminate from './ProgressBars/LinearIndeterminate.tsx';
