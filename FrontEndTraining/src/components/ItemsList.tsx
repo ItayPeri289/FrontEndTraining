@@ -21,6 +21,14 @@ import { useState } from 'react';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import LinearDeterminate from './ProgressBars/LinearDeterminate';
 import SnackbarContent from '@mui/material/SnackbarContent';
+import BuyDialog from './BuyDialog';
+import AlertDialog from './AlertDialog';
+import { Dialog } from '@mui/material';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 interface State extends SnackbarOrigin {
   open: boolean;
@@ -42,6 +50,8 @@ const [state, setState] = React.useState<State>({
 });
 const { vertical, horizontal, open } = state;
 
+const [openAlertDialog, setOpenAlertDialog] = useState(false);
+
 
 const handleClick = (newState: SnackbarOrigin) => {
   if (balance >= cartItemsPrice)
@@ -50,6 +60,10 @@ const handleClick = (newState: SnackbarOrigin) => {
     removeAllItemsFromCart();
   }
 }
+
+const handleClose = () => {
+  setOpenAlertDialog(false);
+};
 
 const removeAllItemsFromCart = async () => {
   await sleep(1000);
@@ -63,8 +77,19 @@ const removeAllItemsFromCart = async () => {
   };
 
   if(itemsArray.length == 0)
-    return <div style ={{display: 'flex', justifyContent: 'center'}}>העגלה ריקה</div>;
-  
+  {
+    
+    return(
+    <div style ={{display: 'flex', justifyContent: 'center'}}>
+     <div> העגלה ריקה</div>
+
+     {openAlertDialog && 
+      <BuyDialog handleClose={handleClose}/>
+        }
+      </div>
+    )
+  }
+
   const itemsNumber = itemsArray.length;
 
   return( 
@@ -110,10 +135,9 @@ const removeAllItemsFromCart = async () => {
       width: '20rem',
     }}
   >
-    <LinearDeterminate itemsAmount={itemsNumber} />
+    <LinearDeterminate itemsAmount={itemsNumber} setOpenAlertDialog={setOpenAlertDialog} />
   </Box>
 </Snackbar>
-
 
   </Box>
 );
