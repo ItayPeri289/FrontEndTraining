@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import CardMedia from "@mui/material/CardMedia";
 import InfoIcon from "@mui/icons-material/Info";
-import useCartStore from "../store/cartStore";
+import useCartStore from "../../store/cartStore";
 
 interface StoreCard {
   imageUrl: string;
@@ -31,7 +31,12 @@ export default function AlertDialog(props: StoreCard) {
 
   return (
     <React.Fragment>
-      <Button color="secondary" variant="contained" onClick={handleClickOpen}>
+      <Button
+        color="secondary"
+        variant="contained"
+        onClick={handleClickOpen}
+        sx={{ gap: "0.3rem" }}
+      >
         <InfoIcon />
         פרטים
       </Button>

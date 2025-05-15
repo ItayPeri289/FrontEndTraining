@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartBadge from "./ShoppingCartBadge";
-import useCartStore from "../store/cartStore";
+import useCartStore from "../../store/cartStore";
 
 export default function MenuBar() {
   const balance = useCartStore((state) => state.balance);

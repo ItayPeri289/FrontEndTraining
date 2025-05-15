@@ -1,10 +1,9 @@
 import * as React from "react";
-import productsArray from "../data/Products.json";
-import MediaCard from "../components/MediaCard";
-import "./AllCards.css";
+import productsArray from "../../data/Products.json";
+import MediaCard from "./MediaCard";
+import "./HomePage.css";
 
-export default function AllCards() {
-  
+export default function HomePage() {
   return (
     <div className="items">
       {productsArray.map((item) => (

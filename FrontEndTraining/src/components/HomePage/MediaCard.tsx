@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AlertDialog from "./AlertDialog";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import useCartStore from "../store/cartStore";
+import useCartStore from "../../store/cartStore";
 
 interface StoreCard {
   imageUrl: string;
@@ -45,7 +45,11 @@ export default function MediaCard(props: StoreCard) {
           description={props.description}
           price={props.price}
         />
-        <Button variant="contained" onClick={() => addItem(props)}>
+        <Button
+          variant="contained"
+          onClick={() => addItem(props)}
+          sx={{ gap: "0.2rem" }}
+        >
           <ShoppingCartIcon />
           הוסף לעגלה
         </Button>

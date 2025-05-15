@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useState } from "react";
-import AllCards from "../AllCards";
+import HomePage from "../HomePage/HomePage";
 
 export default function LinearIndeterminate() {
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ export default function LinearIndeterminate() {
           sx={{ marginTop: "12em", marginRight: "3rem", marginLeft: "5rem" }}
         />
       )}
-      {!loading && <AllCards />}
+      {!loading && <HomePage />}
     </Box>
   );
 }

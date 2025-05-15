@@ -41,7 +41,7 @@ export default function ItemsList() {
                   aria-label="delete"
                   onClick={() => removeItemByIndex(index)}
                 >
-                  <DeleteIcon />
+                  <DeleteIcon color="error" />
                 </IconButton>
               </ListItem>
             </List>
