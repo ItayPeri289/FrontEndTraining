@@ -1,10 +1,13 @@
-import * as React from 'react';
-import Badge from '@mui/material/Badge';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import * as React from "react";
+import Badge from "@mui/material/Badge";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import useCartStore from "../store/cartStore";
 
-export default function ShoppingCartBadge({itemsAmount}: {itemsAmount: number}) { // get from store instead 
+export default function ShoppingCartBadge() {
+  const cartCount = useCartStore((state) => state.cartCount);
+
   return (
-    <Badge badgeContent={itemsAmount} color='warning'>
+    <Badge badgeContent={cartCount} color="warning">
       <ShoppingCartIcon color="action" />
     </Badge>
   );

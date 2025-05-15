@@ -1,20 +1,20 @@
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; 
-import HomeIcon from '@mui/icons-material/Home';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import AllCards from './AllCards.tsx';
-import ItemsList from './ItemsListPage/ItemsListPage.tsx';
-import Button from '@mui/material/Button';
-import { useEffect } from 'react';
-import LinearIndeterminate from './ProgressBars/LinearIndeterminate.tsx';
+import * as React from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import HomeIcon from "@mui/icons-material/Home";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import AllCards from "./AllCards.tsx";
+import ItemsList from "./ItemsListPage/ItemsListPage.tsx";
+import Button from "@mui/material/Button";
+import { useEffect } from "react";
+import LinearIndeterminate from "./ProgressBars/LinearIndeterminate.tsx";
 
 export default function LabTabs() {
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = React.useState("1");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -23,20 +23,20 @@ export default function LabTabs() {
   return (
     <Box>
       <TabContext value={value}>
-      <Box dir = "rtl" >
-      <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label= {<HomeIcon/>} value="1" />
-            <Tab label={ <ShoppingCartIcon/>} value="2" />
+        <Box dir="rtl">
+          <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab label={<HomeIcon />} value="1" />
+            <Tab label={<ShoppingCartIcon />} value="2" />
           </TabList>
-      </Box>
-      <TabPanel value="1">
-        <LinearIndeterminate/>
+        </Box>
+        <TabPanel value="1">
+          <LinearIndeterminate />
         </TabPanel>
         <TabPanel value="2">
-          <ItemsList/>
+          <ItemsList />
         </TabPanel>
-        </TabContext>
-      <br/>
+      </TabContext>
+      <br />
     </Box>
   );
 }

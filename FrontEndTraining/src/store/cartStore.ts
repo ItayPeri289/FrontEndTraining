@@ -7,7 +7,7 @@ interface CartStore {
   itemsArray: cartItem[];
   reduceBalance: (price: number) => void;
   addItem: (cartItem: cartItem) => void;
-  removeItem: (index: number) => void;
+  removeItemByIndex: (index: number) => void;
 }
 
 interface cartItem {
@@ -34,7 +34,7 @@ const useCartStore = create<CartStore>((set) => ({
         Math.round((state.cartItemsPrice + cartItem.price) * 100) / 100,
       itemsArray: [...state.itemsArray, cartItem],
     })),
-  removeItem: (index: number) =>
+  removeItemByIndex: (index: number) =>
     set((state) => ({
       cartCount: state.cartCount - 1,
       cartItemsPrice:

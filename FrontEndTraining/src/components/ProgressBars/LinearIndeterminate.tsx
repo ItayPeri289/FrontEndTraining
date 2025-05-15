@@ -1,28 +1,30 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
-import { useState } from 'react';
-import AllCards from '../AllCards';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
+import { useState } from "react";
+import AllCards from "../AllCards";
 
 export default function LinearIndeterminate() {
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    React.useEffect(() => {
-        setLoading(true);
+  React.useEffect(() => {
+    setLoading(true);
 
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 1000);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
 
-        return () => clearTimeout(timer);
-      }, []);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <Box sx={{ width: '100%'}}>
-        {loading && 
-        <LinearProgress sx={{marginTop:'12em', marginRight: '3rem', marginLeft: '5rem'}}/>    
-        }
-        {!loading && <AllCards/>}
+    <Box sx={{ width: "100%" }}>
+      {loading && (
+        <LinearProgress
+          sx={{ marginTop: "12em", marginRight: "3rem", marginLeft: "5rem" }}
+        />
+      )}
+      {!loading && <AllCards />}
     </Box>
   );
 }

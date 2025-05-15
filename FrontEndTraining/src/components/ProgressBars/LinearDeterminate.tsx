@@ -1,9 +1,9 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 
 interface loadingProgressBar {
-  itemsAmount: number,
+  itemsAmount: number;
   setOpenAlertDialog: (status: boolean) => void;
 }
 
@@ -28,8 +28,12 @@ export default function LinearDeterminate(props: loadingProgressBar) {
   }, []);
 
   return (
-    <Box sx={{ width: '18rem', backgroundColor: 'DodgeBlue'}}>
-<LinearProgress variant="determinate" value={progress} sx={{ height: 10 }} />
+    <Box sx={{ width: "18rem", backgroundColor: "DodgeBlue" }}>
+      <LinearProgress
+        variant="determinate"
+        value={progress}
+        sx={{ height: 10 }}
+      />
     </Box>
   );
 }
