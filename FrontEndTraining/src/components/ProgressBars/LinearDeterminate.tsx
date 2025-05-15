@@ -1,7 +1,6 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface loadingProgressBar {
   itemsAmount: number;
@@ -9,9 +8,9 @@ interface loadingProgressBar {
 }
 
 export default function LinearDeterminate(props: loadingProgressBar) {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState<number>(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress === 100) {

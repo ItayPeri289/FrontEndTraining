@@ -8,9 +8,10 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ItemsList from "../ItemsListPage/ItemsListPage.tsx";
 import LinearIndeterminate from "../ProgressBars/LinearIndeterminate.tsx";
+import { useState } from "react";
 
 export default function LabTabs() {
-  const [value, setValue] = React.useState("1");
+  const [value, setValue] = useState<string>("1");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);

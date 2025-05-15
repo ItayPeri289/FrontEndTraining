@@ -19,11 +19,11 @@ export default function ItemsListPage() {
     cartCount,
   } = useCartStore((state) => state);
 
-  const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
 
-  const [openAlertDialog, setOpenAlertDialog] = useState(false);
+  const [openAlertDialog, setOpenAlertDialog] = useState<boolean>(false);
 
-  const [purchaseSucceeded, setPurchaseSucceeded] = useState(false);
+  const [purchaseSucceeded, setPurchaseSucceeded] = useState<boolean>(false);
 
   const handleClick = () => {
     if (balance >= cartItemsPrice) {

@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import CardMedia from "@mui/material/CardMedia";
 import InfoIcon from "@mui/icons-material/Info";
 import useCartStore from "../../store/cartStore";
+import { useState } from "react";
 
 interface StoreCard {
   imageUrl: string;
@@ -19,7 +20,7 @@ interface StoreCard {
 export default function AlertDialog(props: StoreCard) {
   const addItem = useCartStore((state) => state.addItem);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const handleClickOpen = () => {
     setOpen(true);

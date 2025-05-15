@@ -1,13 +1,12 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HomePage from "../HomePage/HomePage";
 
 export default function LinearIndeterminate() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLoading(true);
 
     const timer = setTimeout(() => {
