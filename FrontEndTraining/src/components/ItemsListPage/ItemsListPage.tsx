@@ -7,6 +7,7 @@ import LinearDeterminate from "../ProgressBars/LinearDeterminate";
 import BuyDialog from "./BuyDialog";
 import ItemsList from "./ItemsList";
 import Alert from "@mui/material/Alert";
+import Utils from '../../Utils/Utils'
 
 export default function ItemsListPage() {
   const {
@@ -17,8 +18,6 @@ export default function ItemsListPage() {
     reduceBalance,
     cartCount,
   } = useCartStore((state) => state);
-  const sleep = (delay: number) =>
-    new Promise((resolve) => setTimeout(resolve, delay)); // add to utils
 
   const [openSnackBar, setOpenSnackBar] = useState(false);
 
@@ -39,12 +38,12 @@ export default function ItemsListPage() {
   };
 
   const removeAllItemsFromCart = async () => {
-    await sleep(500);
+    await Utils.sleep(500);
     reduceBalance(itemsArray[0].price);
     while (itemsArray.length > 0) {
       removeItemByIndex(0);
       reduceBalance(itemsArray[0].price);
-      await sleep(500);
+      await Utils.sleep(500);
     }
   };
 

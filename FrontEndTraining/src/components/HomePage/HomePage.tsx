@@ -1,4 +1,3 @@
-import * as React from "react";
 import productsArray from "../../data/Products.json";
 import MediaCard from "./MediaCard";
 import "./HomePage.css";
