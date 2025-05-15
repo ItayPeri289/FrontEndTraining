@@ -1,40 +1,13 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import FolderIcon from '@mui/icons-material/Folder';
-import DeleteIcon from '@mui/icons-material/Delete';
 import useCartStore from '../../store/cartStore';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import LinearDeterminate from '../ProgressBars/LinearDeterminate';
-import SnackbarContent from '@mui/material/SnackbarContent';
 import BuyDialog from '../BuyDialog';
-import AlertDialog from '../AlertDialog';
-import { Dialog } from '@mui/material';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import ItemsList from './ItemsList';
 import Alert from '@mui/material/Alert';
 
-
-interface State extends SnackbarOrigin {
-  open: boolean;
-}
 
 export default function ItemsListPage() {
 
@@ -45,24 +18,19 @@ const balance = useCartStore((state) => state.balance);
 const reduceBalance = useCartStore((state)=> state.reduceBalance);
 const sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay))
 
-const [state, setState] = React.useState<State>({
-  open: false,
-  vertical: 'top',
-  horizontal: 'center',
-});
-const { vertical, horizontal, open } = state;
+const [openSnackBar, setOpenSnackBar] = useState(false);
 
 const [openAlertDialog, setOpenAlertDialog] = useState(false);
 
 const [purchaseSucceeded, setPurchaseSucceeded] = useState(false);
 
-const handleClick = (newState: SnackbarOrigin) => {
+const handleClick = () => {
   if (balance >= cartItemsPrice)
   {
     setPurchaseSucceeded(true);
     removeAllItemsFromCart();
   }
-  setState({ ...newState, open: true });
+  setOpenSnackBar(true);
 }
 
 const handleClose = () => {
@@ -99,13 +67,12 @@ const removeAllItemsFromCart = async () => {
 
   return( 
   <Box>
-  <div style ={{display: 'flex', justifyContent: 'center'}}><Button variant="contained" onClick={() => handleClick({ vertical: 'top', horizontal: 'center' })}>הזמן {cartItemsPrice}₪</Button></div>
+  <div style ={{display: 'flex', justifyContent: 'center'}}><Button variant="contained" onClick={() => handleClick()}>הזמן {cartItemsPrice}₪</Button></div>
     <ItemsList/>
 
 <Snackbar
-  anchorOrigin={{ vertical, horizontal }}
-  open={open}
-  key={vertical + horizontal}
+  anchorOrigin={{ vertical:'top', horizontal:'center' }}
+  open={openSnackBar}
 >
   <Box
     sx={{
@@ -128,9 +95,7 @@ const removeAllItemsFromCart = async () => {
     icon = {false}
   >
 ההזמנה לא הושלמה
-  </Alert>
-    
-    }
+  </Alert>}
   </Box>
 </Snackbar>
 
