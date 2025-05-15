@@ -39,12 +39,12 @@ export default function ItemsListPage() {
   };
 
   const removeAllItemsFromCart = async () => {
-    await sleep(1000);
+    await sleep(500);
     reduceBalance(itemsArray[0].price);
     while (itemsArray.length > 0) {
       removeItemByIndex(0);
       reduceBalance(itemsArray[0].price);
-      await sleep(1000);
+      await sleep(500);
     }
   };
 
@@ -65,7 +65,6 @@ export default function ItemsListPage() {
         </Button>
       </div>
       <ItemsList />
-
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={openSnackBar}

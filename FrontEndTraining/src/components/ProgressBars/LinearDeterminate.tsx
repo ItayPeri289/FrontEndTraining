@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
+import { useState } from "react";
 
 interface loadingProgressBar {
   itemsAmount: number;
@@ -8,7 +9,7 @@ interface loadingProgressBar {
 }
 
 export default function LinearDeterminate(props: loadingProgressBar) {
-  const [progress, setProgress] = React.useState(0); // import usestate
+  const [progress, setProgress] = useState(0);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -19,7 +20,7 @@ export default function LinearDeterminate(props: loadingProgressBar) {
         const diff = 100 / props.itemsAmount;
         return Math.min(oldProgress + diff, 100);
       });
-    }, 1000);
+    }, 500);
 
     return () => {
       props.setOpenAlertDialog(true);
