@@ -28,7 +28,7 @@ export default function LinearDeterminate(props: loadingProgressBar) {
   }, []);
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '18rem', backgroundColor: 'DodgeBlue'}}>
 <LinearProgress variant="determinate" value={progress} sx={{ height: 10 }} />
     </Box>
   );

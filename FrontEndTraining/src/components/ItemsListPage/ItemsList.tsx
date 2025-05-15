@@ -30,10 +30,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function ItemsList () {
     
-const itemsArray = useCartStore((state) => state.itemsArray);    
+const itemsArray = useCartStore((state) => state.itemsArray);   
+const removeItemByIndex = useCartStore((state) => state.removeItem); 
   return (
     <Box>
-    {itemsArray.map((item) =>
+    {itemsArray.map((item, index) =>
         <Box>
             <Grid size={{ xs: 6, md: 8 }} >
                 <List>
@@ -52,7 +53,7 @@ const itemsArray = useCartStore((state) => state.itemsArray);
                       </Box>
                       }
                     >
-                        <IconButton edge="end" aria-label="delete">
+                        <IconButton edge="end" aria-label="delete" onClick={() => removeItemByIndex(index)}>
                           <DeleteIcon />
                         </IconButton>
                     </ListItem>

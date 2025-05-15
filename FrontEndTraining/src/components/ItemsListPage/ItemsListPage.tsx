@@ -29,6 +29,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ItemsList from './ItemsList';
+import Alert from '@mui/material/Alert';
 
 
 interface State extends SnackbarOrigin {
@@ -55,7 +56,6 @@ const [openAlertDialog, setOpenAlertDialog] = useState(false);
 
 const [purchaseSucceeded, setPurchaseSucceeded] = useState(false);
 
-
 const handleClick = (newState: SnackbarOrigin) => {
   if (balance >= cartItemsPrice)
   {
@@ -79,6 +79,7 @@ const removeAllItemsFromCart = async () => {
     await sleep(1000);
   }
   };
+
 
   if(itemsArray.length == 0)
   {
@@ -108,13 +109,28 @@ const removeAllItemsFromCart = async () => {
 >
   <Box
     sx={{
-      backgroundColor: 'white',
       padding: 2,
-      width: '20rem',
+      width: 'auto',
+      backgroundColor: purchaseSucceeded ? 'dodgerblue' : 'transparent',
     }}
   >
-    {purchaseSucceeded && <LinearDeterminate itemsAmount={itemsNumber} setOpenAlertDialog={setOpenAlertDialog} />}
-    {!purchaseSucceeded && <h1>ההזמנה לא הושלמה!!!</h1>}
+    {purchaseSucceeded && 
+
+    <LinearDeterminate itemsAmount={itemsNumber} setOpenAlertDialog={setOpenAlertDialog}/>
+    }
+
+    {!purchaseSucceeded && 
+    
+    <Alert
+    severity="error"
+    variant="filled"
+    sx={{ width: '50%%' }}
+    icon = {false}
+  >
+ההזמנה לא הושלמה
+  </Alert>
+    
+    }
   </Box>
 </Snackbar>
 
