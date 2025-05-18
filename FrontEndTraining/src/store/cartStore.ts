@@ -20,7 +20,7 @@ interface cartItem {
 const useCartStore = create<CartStore>((set) => ({
   cartCount: 0,
   cartItemsPrice: 0,
-  balance: 1000.0,
+  balance: 1000,
   itemsArray: [],
 
   reduceBalance: (price: number) =>
